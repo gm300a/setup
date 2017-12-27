@@ -1,0 +1,69 @@
+limit stacksize 10240k
+limit coredumpsize 0
+
+set correct=cmd
+set ellipsis
+set fignore=(.o \~ )
+
+set histfile=$HOME/.savehist
+set history=600
+set histdup=erase
+set ignoreeof
+
+set implicitcd
+set printexitvalue
+set pushdsilent
+set rmstar
+set rprompt="%U%T%u"
+set savehist=600
+set tperiod=20
+set visiblebell
+
+unsetenv LC_PAPER
+unsetenv LC_MONETARY
+unsetenv LC_TELEPHONE
+unsetenv LC_NAME
+unsetenv LC_NUMERIC
+unsetenv LC_MEASUREMENT
+unsetenv LC_TIME
+unsetenv LC_IDENTIFICATION
+unsetenv LC_ADDRESS
+
+#don't set this. This crashs tcsh
+#set histdup=erase
+
+unset autologout
+unset mail
+
+complete gawk 'n/-f/f:*.awk/'
+complete tclsh 'n/-f/f:*.tcl/'
+complete cd 'p/1/d/'
+complete ise 'p/*/f:*xise/'
+complete planAhead 'p/*/f:*ppr/'
+complete vivado 'n/-source/f:*tcl/' 'n/-mode/(tcl batch)/' 'c/-/(mode source tclargs)/' 'p/1/f:*.{dcp,xpr,ppr}/'
+#n/-f/f:*.xise/;n/-intstyle/silent/;p/1/-intstyle'
+complete vivado_hls 'n/-f/f:*tcl/' 'n/-p/d/' 'c/-/(p n)/'
+complete git 'p/1/(log checkout add commit branch gui status diff remote)/' 'n/diff/--staged/' 'n/branch/--all/' 'n/log/(--oneline --all --graph)/'
+
+alias pwd dirs -v
+alias periodic date
+alias grep grep --color=tty
+alias ls ls --color=tty
+alias free free -g
+alias planAhead planAhead -m64 
+alias vivado vivado -m64 
+#bindley run-fg-editor ^Z
+set prompt="%B%{\e[31m%}%C1%b%{\e[00m%} >"
+
+#
+setenv PATH /opt/gnome/bin:/opt/kde3/bin:/usr/bin/X11:/usr/local/bin:/usr/bin:/usr/X11R6/bin:/bin:/home/junichi/.dotfiles/bin
+setenv PATH /home/junichi/.dotfiles/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/bin:/bin
+#setenv LM_LICENSE_FILE 2001@xcobuild116:1800@efpga
+#setenv XILINX /u3/caetools/12/12.3/ISE_DS/ISE
+#setenv LM_LICENSE_FILE /home/xilinx/.dotfiles/licenses/xilinx.0.lic
+#setenv LM_LICENSE_FILE /home/xilinx/.dotfiles/licenses/demopc4.lic
+setenv LANG C
+setenv CFLAGS -O3
+setenv SHELL `which tcsh`
+setenv XTERM_SHELL `which tcsh`
+setenv LOGINDONE 1

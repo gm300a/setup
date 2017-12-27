@@ -1,0 +1,112 @@
+; -*- mode: emacs-lisp -*-
+;( server-start )
+;; Red Hat Linux default .emacs initialization file  
+
+;; Set up the keyboard so the delete key on both the regular keyboard
+;; and the keypad delete the character under the cursor and to the right
+;; under X, instead of the default, backspace behavior.
+(setq truncate-lines t)
+(setq auto-mode-alist (cons  '("\\.xdc\\'" . tcl-mode) auto-mode-alist))
+
+(global-set-key [delete] 'delete-char)
+(global-set-key [kp-delete] 'delete-char)
+
+;; turn on font-lock mode
+(global-font-lock-mode t)
+;; enable visual feedback on selections
+(setq-default transient-mark-mode t)
+( show-paren-mode 1 )
+;; always end a file with a newline
+(setq require-final-newline t)
+
+;; stop at the end of the file, not just add lines
+(setq next-line-add-newlines nil)
+
+(when window-system
+  ;; enable wheelmouse support by default
+  (mwheel-install)
+  ;; use extended compound-text coding for X clipboard
+  (set-selection-coding-system 'compound-text-with-extensions))
+
+;;; auto defined with Setup_wnn7egg script ------------------
+(set-face-foreground 'font-lock-string-face  "purple")
+;(if (featurep 'xemacs)
+;(setq load-path (append '("/usr/share/wnn7/elisp/xemacs21") load-path))
+;(setq load-path (append '("/usr/share/wnn7/elisp/emacs20") load-path)))
+;(global-set-key "\C-\\" 'toggle-input-method)
+;(load "wnn7egg-leim")
+;(if (featurep 'xemacs)
+;(select-input-method "japanese-egg-wnn7")
+;(set-input-method "japanese-egg-wnn7"))
+;(set-language-info "Japanese" 'input-method "japanese-egg-wnn7")
+;(set-terminal-coding-system 'japanese-iso-8bit)
+
+;;;-----------------------
+(if (fboundp 'toggle-scroll-bar) 
+    (toggle-scroll-bar -1))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(global-set-key "\e\?" 'goto-line)
+;(c-set-style "stroustrup" )
+;;;-----------------------
+(add-hook 'mh-letter-mode-hook 'auto-fill-mode)
+;(add-hook 'mh-before-send-letter-hook 'ispell-message)
+(setq mh-visible-headers "^From: \\|^Subject: \\|^Date: ")
+(setq mh-invisible-headers "^X-\\|^Content-\\|^References: \\|^Status: ")
+(setq mh-clean-message-header t )
+;(setq mh-signature-file-name "/home/jkikkawa/.dotfiles/signature")
+(setq mh-store-default-directory "/windows/d/tran" )
+(defun mh-kick-pipe (arg)
+  "wrapperr for de-HTML filter in mh-folder mode"
+  (interactive "P")
+  (mh-pipe-msg "/home/jkikkawa/.dotfiles/lib/toys/mail.03 -emacs" t))
+
+(add-hook 'mh-folder-mode-hook 
+               '(lambda () (define-key mh-folder-mode-map "/" 'mh-kick-pipe)))
+(show-paren-mode 1)
+;;
+
+;(defun cc-kick (arg)
+;  "setup indent"
+;  ( c-set-style "stroustrup" ))
+;(add-hook 'c-mode-common-hook 'cc-kick)
+
+;
+(setq auto-mode-alist (cons  '("\\.v\\'" . verilog-mode) auto-mode-alist))
+(autoload 'verilog-mode "verilog-mode" "verilog mode" t)
+(setq 
+ verilog-auto-endcomments         t
+ verilog-auto-indent-on-newline   t
+ verilog-auto-lineup              '(none)
+ verilog-auto-newline             nil
+ verilog-case-indent              4
+ verilog-indent-begin-after-if    nil
+ verilog-indent-level             4
+ verilog-indent-level-behavioral  4
+ verilog-indent-level-declaration 4
+ verilog-indent-level-directive   4
+ verilog-indent-level-module      4
+ verilog-indent-lists t
+ verilog-cexp-indent 4
+ verilog-case-indent 2
+ verilog-minimum-comment-distance 10
+ verilog-tab-always-indent        t
+ )
+
+;(autoload 'javascript-mode "javascript-mode" "JavaScript mode" t)
+;(setq auto-mode-alist (append '(("\\.js$" . javascript-mode))
+;			      auto-mode-alist))
+
+(add-to-list 'load-path "/home/junichi/.dotfiles/lisp/")
+;(require 'tramp)
+;(setq tramp-default-method "scp")
+;(remove-hook 'find-file-hook 'ange-ftp-set-buffer-mode)
+;(add-to-list 'tramp-default-method-alist '("\\`x41\\'" "\\`kikkawa\\'" "ssh"))
+;(add-to-list 'tramp-default-method-alist '("\\`au1\\'" "\\`jk\\'" "ssh"))
+;(add-to-list 'tramp-default-method-alist '("\\`localhost\\" "\\`root\\'" "su"))
+
+(put 'upcase-region 'disabled nil)
+;(add-hook 'find-file-hook 'toggle-truncate-lines)
+(toggle-truncate-lines 1)
+(setq truncate-lines 1)
+(setq auto-mode-alist (cons  '("\\.xdc\\'" . tcl-mode) auto-mode-alist))
