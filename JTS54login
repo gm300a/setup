@@ -48,6 +48,7 @@ set prompt="%B%{\e[35m%}%C1%b%{\e[00m%} >"
 #
 setenv PATH /opt/gnome/bin:/opt/kde3/bin:/usr/bin/X11:/usr/local/bin:/usr/bin:/usr/X11R6/bin:/bin:/home/junichi/.dotfiles/bin
 setenv PATH /home/junichi/.dotfiles/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/bin:/bin
+setenv PATH /usr/bin/X11:/usr/bin:/bin
 #setenv LM_LICENSE_FILE 2001@xcobuild116:1800@efpga
 #setenv XILINX /u3/caetools/12/12.3/ISE_DS/ISE
 #setenv LM_LICENSE_FILE /home/xilinx/.dotfiles/licenses/xilinx.0.lic
